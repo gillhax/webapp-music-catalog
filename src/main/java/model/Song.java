@@ -1,4 +1,4 @@
-package configuration.model;
+package model;
 
     import javax.persistence.Column;
     import javax.persistence.Entity;
@@ -22,15 +22,15 @@ package configuration.model;
         private String name;
 
         @NotNull
-        @Column(name = "AlbumID", nullable = false)
+        @Column(name = "ALBUMID", nullable = false)
         private int albumId;
 
         @NotNull
-        @Column(name = "ArtistID", nullable = false)
+        @Column(name = "ARTISTID", nullable = false)
         private int artistId;
 
         @NotNull
-        @Column(name = "UserID", nullable = false)
+        @Column(name = "USERID", nullable = false)
         private int userId;
 
         @NotNull
