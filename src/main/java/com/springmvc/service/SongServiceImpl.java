@@ -1,4 +1,4 @@
-package service;
+package com.springmvc.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.SongDao;
-import model.Song;
+import com.springmvc.dao.SongDao;
+import com.springmvc.model.Song;
 
 @Service("songService")
 @Transactional

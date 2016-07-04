@@ -1,7 +1,7 @@
-package dao;
+package com.springmvc.dao;
 
 import java.util.List;
-import model.Song;
+import com.springmvc.model.Song;
 
 public interface SongDao {
 

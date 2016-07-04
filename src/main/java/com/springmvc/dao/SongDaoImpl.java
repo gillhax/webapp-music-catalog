@@ -1,4 +1,4 @@
-package dao;
+package com.springmvc.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import model.Song;
+import com.springmvc.model.Song;
 
 @Repository("songDao")
 public class SongDaoImpl extends AbstractDao<Integer, Song> implements SongDao {
