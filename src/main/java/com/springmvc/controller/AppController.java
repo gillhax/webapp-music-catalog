@@ -10,7 +10,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,6 +73,12 @@ public class AppController {
         }
         service.updateSong(song);
 
+        return "redirect:/list";
+    }
+
+    @RequestMapping(value = { "/delete-{id}-song" }, method = RequestMethod.GET)
+    public String deleteEmployee(@PathVariable int id) {
+        service.deleteSongById(id);
         return "redirect:/list";
     }
 
