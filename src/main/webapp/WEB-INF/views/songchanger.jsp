@@ -10,8 +10,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
     Страница  <c:choose>
-        <c:when test="${edit}">добавление</c:when>
-        <c:otherwise>редактирование</c:otherwise>
+        <c:when test="${edit}">редактирование</c:when>
+        <c:otherwise>добавление</c:otherwise>
     </c:choose> песни
     </title>
 
@@ -27,8 +27,8 @@
 <body>
 
 <h2><c:choose>
-    <c:when test="${edit}">Добавление</c:when>
-    <c:otherwise>Редактирование</c:otherwise>
+    <c:when test="${edit}">Редактирование</c:when>
+    <c:otherwise>Добавление</c:otherwise>
 </c:choose> песни</h2>
 
 <form:form method="POST" modelAttribute="song">
