@@ -31,8 +31,8 @@
             <td>${song.artistId}</td>
             <td>${song.userId}</td>
             <td>${song.source}</td>
-            <td><a href="<c:url value='/update-${song.name}-song' />">[ред.]</a></td>
-            <td><a href="<c:url value='/delete-${song.name}-song' />">[удал.]</a></td>
+            <td><a href="<c:url value='/edit-${song.id}-song' />">[ред.]</a></td>
+            <td><a href="<c:url value='/delete-${song.id}-song' />">[удал.]</a></td>
         </tr>
     </c:forEach>
 </table>

@@ -1,6 +1,7 @@
 package com.springmvc.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -51,7 +54,27 @@ public class AppController {
 
         service.saveSong(song);
 
-        return "allsongs";
+        return "redirect:/list";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-song" }, method = RequestMethod.GET)
+    public String editEmployee(@PathVariable int id, ModelMap model) {
+        Song song = service.findById(id);
+        model.addAttribute("song", song);
+        model.addAttribute("edit", true);
+        return "songchanger";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-song" }, method = RequestMethod.POST)
+    public String updateEmployee(@Valid Song song, BindingResult result,
+                                 ModelMap model, @PathVariable int id) {
+
+        if (result.hasErrors()) {
+            return "songchanger";
+        }
+        service.updateSong(song);
+
+        return "redirect:/list";
     }
 
 }
