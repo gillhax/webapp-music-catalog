@@ -31,8 +31,7 @@
     <c:otherwise>Добавление</c:otherwise>
 </c:choose> песни</h2>
 
-<form:form method="POST" modelAttribute="song">
-    <form:input type="hidden" path="id" id="id"/>
+<form:form method="POST" commandName="handleSongForm" modelAttribute="handleSongForm"  enctype="multipart/form-data" >
     <table>
         <tr>
             <td><label for="name">Название: </label> </td>
@@ -47,21 +46,21 @@
         </tr>
 
         <tr>
-            <td><label for="albumId">Номер артиста: </label> </td>
+            <td><label for="artistId">Номер артиста: </label> </td>
             <td><form:input path="artistId" id="artistId"/></td>
             <td><form:errors path="artistId" cssClass="error"/></td>
         </tr>
 
         <tr>
-            <td><label for="albumId">Номер пользователя: </label> </td>
+            <td><label for="userId">Номер пользователя: </label> </td>
             <td><form:input path="userId" id="userId"/></td>
             <td><form:errors path="userId" cssClass="error"/></td>
         </tr>
 
         <tr>
-            <td><label for="albumId">Путь к исходному файлу: </label> </td>
-            <td><form:input type="file" path="source" id="source"/></td>
-            <td><form:errors path="source" cssClass="error"/></td>
+            <td><label for="file" >Путь к исходному файлу: </label> </td>
+            <td><form:input type="file" accept=".mp3" path="file" id="file" /></td>
+            <td><form:errors path="file" cssClass="error"/></td>
         </tr>
 
         <tr>
