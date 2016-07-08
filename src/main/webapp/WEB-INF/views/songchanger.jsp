@@ -32,6 +32,8 @@
 </c:choose> песни</h2>
 
 <form:form method="POST" commandName="handleSongForm" modelAttribute="handleSongForm"  enctype="multipart/form-data" >
+    <form:input type="hidden" path="id" id="id"/>
+    <form:input type="hidden" path="source" id="source"/>
     <table>
         <tr>
             <td><label for="name">Название: </label> </td>

@@ -43,69 +43,48 @@ public class AppController {
     }
 
     @RequestMapping(value = { "/new" }, method = RequestMethod.POST)
-    public String saveSong(@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result) throws IOException {
+    public String saveSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result) throws IOException {
 
         if (result.hasErrors()) {
             return "songchanger";
         }
-        try {
-            String pathDir = System.getProperty("user.home") + "\\music_catalog-webapp\\music\\"
-                    + handleSongForm.getArtistId() + "\\" + handleSongForm.getAlbumId()+ "\\";
 
-            if(Files.notExists(Paths.get(pathDir))) {
-                boolean res = new File(pathDir).mkdirs();
-                System.out.println(res);
-            }
-            String destPath = pathDir + handleSongForm.getName() + ".mp3";
-
-            InputStream initialStream = handleSongForm.getFile().getInputStream();
-            byte[] buffer = new byte[initialStream.available()];
-            initialStream.read(buffer);
-            File destFile = new File(destPath);
-            destFile.createNewFile();
-            OutputStream outStream = new FileOutputStream(destFile);
-            outStream.write(buffer);
-            initialStream.close();
-            outStream.close();
-
-            Song song = new Song();
-            song.setName(handleSongForm.getName());
-            song.setAlbumId(handleSongForm.getAlbumId());
-            song.setArtistId(handleSongForm.getArtistId());
-            song.setUserId(handleSongForm.getUserId());
-            song.setSource(destPath);
-            service.saveSong(song);
-        }
-        catch (IOException e) {
-            e.fillInStackTrace();
-        }
+        service.saveSong(handleSongForm.PrepareSongToSave());
 
         return "redirect:/list";
     }
 
     @RequestMapping(value = { "/edit-{id}-song" }, method = RequestMethod.GET)
-    public String editEmployee(@PathVariable int id, ModelMap model) {
-        Song song = service.findById(id);
-        model.addAttribute("song", song);
+    public String editSong(@PathVariable int id, ModelMap model) {
+        HandleSongForm handleSongForm = new HandleSongForm();
+        handleSongForm.setSong(service.findById(id));
+        model.addAttribute("handleSongForm", handleSongForm);
         model.addAttribute("edit", true);
         return "songchanger";
     }
 
     @RequestMapping(value = { "/edit-{id}-song" }, method = RequestMethod.POST)
-    public String updateEmployee(@Valid Song song, BindingResult result,
+    public String editSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result,
                                  ModelMap model, @PathVariable int id) {
 
         if (result.hasErrors()) {
+            model.addAttribute("edit",true);
             return "songchanger";
         }
+
+        Song oldSong = service.findById(id);
+        Song song = handleSongForm.PrepareSongToUpdate(oldSong);
         service.updateSong(song);
 
         return "redirect:/list";
     }
 
     @RequestMapping(value = { "/delete-{id}-song" }, method = RequestMethod.GET)
-    public String deleteEmployee(@PathVariable int id) {
+    public String deleteSong(@PathVariable int id) {
+
+        HandleSongForm.DeleteOldFile(HandleSongForm.GetRealPathToFileBySource(service.findById(id)));
         service.deleteSongById(id);
+
         return "redirect:/list";
     }
 
