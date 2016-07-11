@@ -37,9 +37,9 @@ public class SongDaoImpl extends AbstractDao<Integer, Song> implements SongDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Song> findSongsByUser(int userId) {
+    public List<Song> findSongsByArtist(int artistId) {
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("UserId", Integer.toString(userId)));
+        criteria.add(Restrictions.eq("ArtistId", Integer.toString(artistId)));
         return (List<Song>) criteria.list();
     }
 }

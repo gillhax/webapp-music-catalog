@@ -7,7 +7,7 @@ public interface SongDao {
 
     Song findById(int id);
 
-    void saveSong(Song employee);
+    void saveSong(Song song);
 
     void deleteSongById(int id);
 
@@ -15,5 +15,5 @@ public interface SongDao {
 
     List<Song> findSongsByAlbum(int albumId);
 
-    List<Song> findSongsByUser(int userId);
+    List<Song> findSongsByArtist(int artistId);
 }

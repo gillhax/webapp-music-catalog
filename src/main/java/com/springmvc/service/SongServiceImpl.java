@@ -47,8 +47,8 @@ public class SongServiceImpl implements SongService {
         return dao.findSongsByAlbum(albumId);
     }
 
-    public List<Song> findSongsByUser(int userId){
-        return dao.findSongsByUser(userId);
+    public List<Song> findSongsByArtist(int artistId){
+        return dao.findSongsByArtist(artistId);
     }
 
 }

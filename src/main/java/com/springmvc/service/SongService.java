@@ -18,6 +18,6 @@ public interface SongService {
 
     List<Song> findSongsByAlbum(int albumId);
 
-    List<Song> findSongsByUser(int userId);
+    List<Song> findSongsByArtist(int artistId);
 
 }
