@@ -32,7 +32,7 @@ public class AlbumDaoImpl extends AbstractDao<Integer, Album> implements AlbumDa
     @SuppressWarnings("unchecked")
     public List<Album> findAlbumsByArtist(int artistId) {
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("artistId", Integer.toString(artistId)));
+        criteria.add(Restrictions.eq("artistId", artistId));
         return (List<Album>) criteria.list();
     }
 

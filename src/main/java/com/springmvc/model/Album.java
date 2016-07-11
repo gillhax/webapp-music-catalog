@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="Albums")
+@Table(name="ALBUMS")
 public class Album {
 
     @Id
-    @Column(name ="ID")
+    @Column(name ="ALBUM_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

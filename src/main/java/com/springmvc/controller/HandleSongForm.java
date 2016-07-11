@@ -38,7 +38,7 @@ public class HandleSongForm extends Song {
         return song;
     }
 
-    public Song PrepareSongToSave() {
+    public Song prepareSongToSave() {
         try {
             String pathDir = System.getProperty("user.home") + "\\music_catalog-webapp\\music\\"
                     + this.getArtistId() + "\\" + this.getAlbumId()+ "\\";
@@ -61,9 +61,9 @@ public class HandleSongForm extends Song {
     }
 
 
-    public Song PrepareSongToUpdate(Song oldSong) {
+    public Song prepareSongToUpdate(Song oldSong) {
         try {
-            String realPathToOldFile = HandleSongForm.GetRealPathToFileBySource(oldSong);
+            String realPathToOldFile = HandleSongForm.getRealPathToFileBySource(oldSong);
             String pathDir = System.getProperty("user.home") + "\\music_catalog-webapp\\music\\"
                     + this.getArtistId() + "\\" + this.getAlbumId()+ "\\";
             String destPath = pathDir + this.getName() + ".mp3";
@@ -79,12 +79,12 @@ public class HandleSongForm extends Song {
                 File destFile = new File(destPath);
                 Files.copy(sourceFile.toPath(), destFile.toPath());
                 if(!destPath.equalsIgnoreCase(realPathToOldFile))
-                    DeleteOldFile(realPathToOldFile);
+                    deleteOldFile(realPathToOldFile);
             }
             else {
                 file.transferTo(new File(destPath));
                 if(!destPath.equalsIgnoreCase(realPathToOldFile))
-                    DeleteOldFile(realPathToOldFile);
+                    deleteOldFile(realPathToOldFile);
             }
             this.setSource(source);
             return getSong();
@@ -95,7 +95,7 @@ public class HandleSongForm extends Song {
         }
     }
 
-    public static void DeleteOldFile(String sourcePath) {
+    public static void deleteOldFile(String sourcePath) {
 
         File file = new File(sourcePath);
         String parentDir;
@@ -108,7 +108,7 @@ public class HandleSongForm extends Song {
 
     }
 
-    public static String GetRealPathToFileBySource(Song song) {
+    public static String getRealPathToFileBySource(Song song) {
         return  System.getProperty("user.home") + "\\music_catalog-webapp\\music\\"
                 + song.getArtistId() + "\\" + song.getAlbumId()  + "\\" + song.getName() + ".mp3";
     }
