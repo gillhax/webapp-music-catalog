@@ -34,6 +34,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("file:"+System.getProperty("user.home") + "\\music_catalog-webapp\\cover\\");
         registry.addResourceHandler("/music/**")
                 .addResourceLocations("file:"+System.getProperty("user.home") + "\\music_catalog-webapp\\music\\");
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
     }
 
     @Bean

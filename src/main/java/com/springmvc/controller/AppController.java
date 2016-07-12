@@ -7,7 +7,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.springmvc.model.Album;
+import com.springmvc.model.Artist;
 import com.springmvc.service.AlbumService;
+import com.springmvc.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -29,9 +31,24 @@ public class AppController {
     AlbumService albumService;
 
     @Autowired
+    ArtistService artistService;
+
+    @Autowired
     MessageSource messageSource;
 
-    @RequestMapping(value = { "/", "/song-list" }, method = RequestMethod.GET)
+
+    //##Artist implements
+    @RequestMapping(value = {"/", "/artist-list" }, method = RequestMethod.GET)
+    public String listArtists(ModelMap model) {
+
+        List<Artist> artists = artistService.findAllArtist();
+        model.addAttribute("artists", artists);
+        return "artist-list";
+    }
+
+    //##Song implements
+
+    @RequestMapping(value = { "/song-list" }, method = RequestMethod.GET)
     public String listSongs(ModelMap model) {
 
         List<Song> songs = songService.findAllSong();

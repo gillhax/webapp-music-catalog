@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:5px;
+}
+
+.wrap {
+    width: 800px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid rgb(202, 202, 202);
+
+}
+
+.mainbriket {
+    margin-bottom: 20px;
+    margin-top: 5px;
+    width: 800px;
+}
+
+.mainmenu {
+    border-bottom: 2px solid rgba(202, 202, 204, 0.76);
+    margin-left:0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 6px;
+}
+
+table {
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+
+td, th {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 2px;
+}
+td {
+    border-bottom: 2px solid rgba(0, 176, 27, 0.76); /* Параметры линии под текстом */
+}
+
+/* unvisited link */
+a:link {
+    color: dimgrey;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: dimgrey;
+    text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: green;
+    text-decoration: none;
+}
