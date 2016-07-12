@@ -17,7 +17,7 @@ package com.springmvc.model;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @Size(min=2, max=50)
+        @Size(min=1, max=50)
         @Column(name = "NAME", nullable = false)
         private String name;
 
