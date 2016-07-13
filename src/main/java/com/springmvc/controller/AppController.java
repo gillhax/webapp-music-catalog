@@ -50,10 +50,10 @@ public class AppController {
 
     @RequestMapping(value = { "/song-list" }, method = RequestMethod.GET)
     public String listSongs(ModelMap model) {
-
-        List<Song> songs = songService.findAllSong();
-        model.addAttribute("songs", songs);
-        return "allsongs";
+        model.addAttribute("songs", songService.findAllSong());
+        model.addAttribute("artistService", artistService);
+        model.addAttribute("albumService", albumService);
+        return "song-list";
     }
 
     @RequestMapping(value = { "/song-new" }, method = RequestMethod.GET)

@@ -73,6 +73,6 @@ a:hover {
 
 /* selected link */
 a:active {
-    color: green;
+    color: red;
     text-decoration: none;
 }
