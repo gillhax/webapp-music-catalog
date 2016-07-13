@@ -2,55 +2,35 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Все альбомы - Музыкальный каталог</title>
-
-    <style>
-        tr:first-child{
-            font-weight: bold;
-            background-color: #9fe278;
-        }
-    </style>
-
-</head>
+<jsp:include page="/WEB-INF/views/template-top.jsp" />
 
 
-<body >
-<h2>Список всех альбомов</h2>
-
-<div>
-
-    <table>
-        <c:forEach items="${albums}" var="album">
-
+<h4> > Все альбомы</h4>
+<br>
+    <c:forEach items="${albums}" var="album">
+        <table id="album" cellspacing="0" style="border:none; width:600px;margin: 0 auto;">
         <tr>
-            <td colspan="2">${album.name}</td>
+            <th colspan="2">${album.name}</th>
         </tr>
         <tr>
             <td>
-                <a href="${album.coverSource}">${album.coverSource}</a>
-                <br>
-                ${album.year}
+                <img src="/cover/1.jpg"
+                     width="200" height="200" alt="${album.name}"></a>
+                <%--<a href="${album.coverSource}">${album.coverSource}</a>--%>
+                <br>${album.year}
             </td>
             <td>
-                <audio preload="auto">
-                    <c:forEach items="${SongsSourceByAlbumId}" var="sources">
-                        ${sources}
+                <%--<audio preload="auto">--%>
+                    <c:forEach items="${songService.findSongsByAlbum(album.id)}" var="song">
+                        ${song.source}
                     </c:forEach>
-                </audio>
-                <br>
+                <%--</audio>--%>
             </td>
-                <%--<td><a href="<c:url value='/edit-${album.id}-song' />">[ред.]</a></td>--%>
-                <%--<td><a href="<c:url value='/delete-${album.id}-song' />">[удал.]</a></td>--%>
         </tr>
+        </table>
+        <br>
+        <br>
+    </c:forEach>
+<table>
 
-    </table>
-</div>
-
-
-<br/>
-<a href="<c:url value='/album-new' />">Добавить новую песню</a>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/template-bottom.jsp" />

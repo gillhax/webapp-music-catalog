@@ -114,26 +114,8 @@ public class AppController {
 
     @RequestMapping(value = { "/album-list" }, method = RequestMethod.GET)
     public String listAlbums(ModelMap model) {
-        List<Album> albums = albumService.findAllAlbum();
-
-        ArrayList<Integer> albumIds = new ArrayList<Integer>();
-        for(Album album : albums) {
-            albumIds.add(album.getId());
-        }
-        List<String> SongsSourceByAlbumId = new ArrayList<String>();
-        for(int id : albumIds) {
-            List<Song> songs = songService.findSongsByAlbum(id);
-            StringBuilder songsSource = new StringBuilder();
-            for(Song song : songs) {
-                songsSource.append("<script src=");
-                songsSource.append(song.getSource());
-                songsSource.append(" ></script><br>");
-            }
-            SongsSourceByAlbumId.add(songsSource.toString());
-        }
-
-        model.addAttribute("albums", albums);
-        model.addAttribute("SongsSourceByAlbumId", SongsSourceByAlbumId);
+        model.addAttribute("albums", albumService.findAllAlbum());
+        model.addAttribute("songService", songService);
         return "album-list";
     }
 

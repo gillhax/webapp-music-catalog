@@ -7,6 +7,30 @@ body, html {
     height: 100%;
 }
 
+/* unvisited link */
+a:link {
+    color: dimgrey;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: dimgrey;
+    text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: red;
+    text-decoration: none;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -53,26 +77,21 @@ td {
     border-bottom: 2px solid rgba(0, 176, 27, 0.76); /* Параметры линии под текстом */
 }
 
-/* unvisited link */
-a:link {
-    color: dimgrey;
-    text-decoration: underline;
+#album table {
+    margin: 0 auto; !important;
+    border: none; !important;
+    width: 600px;!important;
 }
 
-/* visited link */
-a:visited {
-    color: dimgrey;
-    text-decoration: underline;
+#album td,th {
+    padding: 6px; !important;
 }
 
-/* mouse over link */
-a:hover {
-    color: orangered;
-    text-decoration: none;
+#album th {
+    float: left; !important;
+    border-bottom: 1px solid rgba(0, 176, 27, 0.76); !important;
 }
 
-/* selected link */
-a:active {
-    color: red;
-    text-decoration: none;
+#album td {
+    border-bottom: none; !important;
 }
