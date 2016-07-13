@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Музыкальный каталог - список групп</title>
+    <title>Музыкальный каталог</title>
     <link href="/resources/main.css" rel="stylesheet" >
 </head>
 
