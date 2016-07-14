@@ -83,15 +83,14 @@ td {
     width: 600px;!important;
 }
 
-#album td,th {
-    padding: 6px; !important;
-}
-
 #album th {
-    float: left; !important;
+    padding: 0px 6px; !important;
+
+    text-align: left;
     border-bottom: 1px solid rgba(0, 176, 27, 0.76); !important;
 }
 
 #album td {
+    padding: 6px; !important;
     border-bottom: none; !important;
 }

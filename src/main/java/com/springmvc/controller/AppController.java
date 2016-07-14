@@ -1,7 +1,6 @@
 package com.springmvc.controller;
 
-import java.io.*;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -91,6 +90,66 @@ public class AppController {
         return "redirect:/artist-list";
     }
 
+
+    //##Album implements
+
+    @RequestMapping(value = { "/album-list" }, method = RequestMethod.GET)
+    public String listAlbums(ModelMap model) {
+        model.addAttribute("albums", albumService.findAllAlbum());
+        model.addAttribute("songService", songService);
+        return "album-list";
+    }
+
+    @RequestMapping(value = { "/album-new" }, method = RequestMethod.GET)
+    public String newAlbum(ModelMap model) {
+        model.addAttribute(new HandleAlbumForm());
+        model.addAttribute("artists", artistService.findAllArtist());
+        model.addAttribute("edit", false);
+        return "album-changer";
+    }
+
+    @RequestMapping(value = { "/album-new" }, method = RequestMethod.POST)
+    public String saveAlbum(@Valid@ModelAttribute(value = "handleAlbumForm") HandleAlbumForm handleAlbumForm, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            model.addAttribute("artists", artistService.findAllArtist());
+            model.addAttribute("edit", false);
+            return "album-changer";
+        }
+        albumService.saveAlbum(handleAlbumForm.prepareAlbumToSave());
+        return "redirect:/album-list";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-album" }, method = RequestMethod.GET)
+    public String editAlbum(@PathVariable int id, ModelMap model) {
+        HandleAlbumForm handleAlbumForm = new HandleAlbumForm();
+        handleAlbumForm.setAlbum(albumService.findById(id));
+        model.addAttribute("handleAlbumForm", handleAlbumForm);
+        model.addAttribute("artists", artistService.findAllArtist());
+        model.addAttribute("edit", true);
+        return "album-changer";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-album" }, method = RequestMethod.POST)
+    public String editAlbum(@Valid@ModelAttribute(value = "handleAlbumForm") HandleAlbumForm handleAlbumForm, BindingResult result,
+                           ModelMap model, @PathVariable int id) {
+        if (result.hasErrors()) {
+            model.addAttribute("artists", artistService.findAllArtist());
+            model.addAttribute("edit",true);
+            return "album-changer";
+        }
+        Album oldAlbum = albumService.findById(id);
+        albumService.updateAlbum(handleAlbumForm.prepareAlbumToUpdate(oldAlbum));
+        return "redirect:/album-list";
+    }
+
+    @RequestMapping(value = { "/delete-{id}-album" }, method = RequestMethod.GET)
+    public String deleteAlbum(@PathVariable int id) {
+        HandleAlbumForm.deleteOldFile(HandleAlbumForm.getRealPathToFileBySource(albumService.findById(id)));
+        albumService.deleteAlbumById(id);
+        return "redirect:/album-list";
+    }
+
+
     //##Song implements
 
     @RequestMapping(value = { "/song-list" }, method = RequestMethod.GET)
@@ -109,12 +168,10 @@ public class AppController {
     }
 
     @RequestMapping(value = { "/song-new" }, method = RequestMethod.POST)
-    public String saveSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result) throws IOException {
-
+    public String saveSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result) {
         if (result.hasErrors()) {
             return "songchanger";
         }
-
         songService.saveSong(handleSongForm.prepareSongToSave());
 
         return "redirect:/song-list";
@@ -152,16 +209,6 @@ public class AppController {
         songService.deleteSongById(id);
 
         return "redirect:/song-list";
-    }
-
-
-    //##Album implements
-
-    @RequestMapping(value = { "/album-list" }, method = RequestMethod.GET)
-    public String listAlbums(ModelMap model) {
-        model.addAttribute("albums", albumService.findAllAlbum());
-        model.addAttribute("songService", songService);
-        return "album-list";
     }
 
 }

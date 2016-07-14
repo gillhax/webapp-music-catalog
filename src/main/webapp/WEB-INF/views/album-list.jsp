@@ -14,10 +14,8 @@
         </tr>
         <tr>
             <td>
-                <img src="/cover/1.jpg"
-                     width="200" height="200" alt="${album.name}"></a>
-                <%--<a href="${album.coverSource}">${album.coverSource}</a>--%>
-                <br>${album.year}
+                <img src="${album.coverSource}" width="200" height="200" alt="${album.name}"/>
+                <br><p style="text-align: right">${album.year}></p>
             </td>
             <td>
                 <%--<audio preload="auto">--%>

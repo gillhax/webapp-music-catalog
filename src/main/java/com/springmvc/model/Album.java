@@ -19,7 +19,6 @@ public class Album {
     private String name;
 
     @NotNull
-    @Size(min=4, max=4)
     @Column(name = "YEAR", nullable = false)
     private int year;
 
@@ -68,7 +67,7 @@ public class Album {
         return coverSource;
     }
 
-    public void setCoverSource(String source) {
+    public void setCoverSource(String coverSource) {
         this.coverSource = coverSource;
     }
 
