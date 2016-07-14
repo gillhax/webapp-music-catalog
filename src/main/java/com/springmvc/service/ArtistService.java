@@ -10,6 +10,8 @@ public interface ArtistService {
 
     void saveArtist(Artist artist);
 
+    void updateArtist(Artist artist);
+
     void deleteArtistById(int id);
 
     List<Artist> findAllArtist();

@@ -40,10 +40,55 @@ public class AppController {
     //##Artist implements
     @RequestMapping(value = {"/", "/artist-list" }, method = RequestMethod.GET)
     public String listArtists(ModelMap model) {
-
         List<Artist> artists = artistService.findAllArtist();
         model.addAttribute("artists", artists);
         return "artist-list";
+    }
+
+
+    @RequestMapping(value = { "/artist-new" }, method = RequestMethod.GET)
+    public String newArtist(ModelMap model) {
+
+        model.addAttribute(new Artist());
+        model.addAttribute("edit", false);
+        return "artist-changer";
+    }
+
+    @RequestMapping(value = { "/artist-new" }, method = RequestMethod.POST)
+    public String saveArtist(@Valid Artist artist, BindingResult result){
+
+        if (result.hasErrors()) {
+            return "artist-changer";
+        }
+        artistService.saveArtist(artist);
+
+        return "redirect:/artist-list";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-artist" }, method = RequestMethod.GET)
+    public String editArtist(@PathVariable int id, ModelMap model) {
+        model.addAttribute("artist", artistService.findById(id));
+        model.addAttribute("edit", true);
+        return "artist-changer";
+    }
+
+    @RequestMapping(value = { "/edit-{id}-artist" }, method = RequestMethod.POST)
+    public String editArtist(@Valid Artist artist, BindingResult result,
+                           ModelMap model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("edit",true);
+            return "artist-changer";
+        }
+        artistService.updateArtist(artist);
+
+        return "redirect:/artist-list";
+    }
+
+    @RequestMapping(value = { "/delete-{id}-artist" }, method = RequestMethod.GET)
+    public String deleteArtist(@PathVariable int id) {
+        artistService.deleteArtistById(id);
+        return "redirect:/artist-list";
     }
 
     //##Song implements
