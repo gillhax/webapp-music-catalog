@@ -7,7 +7,7 @@
 
         <h4> > Все группы</h4>
         <br>
-        <table cellspacing="0">
+        <table cellspacing="0" style="margin-left:15px">
             <c:forEach items="${artists}" var="artist">
                 <tr>
                     <td>${artist.id}.</td>

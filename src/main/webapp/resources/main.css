@@ -62,9 +62,8 @@ a:active {
 }
 
 table {
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
+    margin: 0 auto; !important;
+
 }
 
 td, th {
@@ -74,7 +73,7 @@ td, th {
     padding-bottom: 2px;
 }
 td {
-    border-bottom: 2px solid rgba(0, 176, 27, 0.76); /* Параметры линии под текстом */
+    border-bottom: 1px solid green; /* Параметры линии под текстом */
 }
 
 #album table {
@@ -87,7 +86,7 @@ td {
     padding: 0px 6px; !important;
 
     text-align: left;
-    border-bottom: 1px solid rgba(0, 176, 27, 0.76); !important;
+    border-bottom: 1px solid green; !important;
 }
 
 #album td {

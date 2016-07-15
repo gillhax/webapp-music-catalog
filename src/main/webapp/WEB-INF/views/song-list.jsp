@@ -3,12 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/template-top.jsp" />
+<style> .audiojs { width: 320px; !important;}  .audiojs .scrubber { width: 150px!important;} </style>
 
-
+ <script>
+      audiojs.events.ready(function() {audiojs.createAll();
+      });
+</script>
 <h4> > Все песни</h4>
 <br>
 
-<table cellspacing="0">
+<table cellspacing="0" style="margin: 0 auto;">
     <tr>
         <th>Id</th><th>Название</th><th>Группа</th><th>Альбом</th><th>Воспроизвести</th>
     </tr>
@@ -18,8 +22,8 @@
             <td>${song.name}</td>
             <td>${artistService.findById(song.artistId).name}</td>
             <td>${albumService.findById(song.albumId).name}</td>
-            <td>${song.source}</td>
-            <%--<td><a href="<c:url value='/edit-${song.id}-song' />">[ред.]</a></td>--%>
+            <td><audio src="${song.source}" preload="none"></audio></td>
+            <%--<td><a href    </script>="<c:url value='/edit-${song.id}-song' />">[ред.]</a></td>--%>
             <%--<td><a href="<c:url value='/delete-${song.id}-song' />">[удал.]</a></td>--%>
         </tr>
     </c:forEach>
