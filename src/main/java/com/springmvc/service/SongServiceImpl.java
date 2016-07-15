@@ -30,7 +30,6 @@ public class SongServiceImpl implements SongService {
             entity.setName(song.getName());
             entity.setAlbumId(song.getAlbumId());
             entity.setArtistId(song.getArtistId());
-            entity.setUserId(song.getUserId());
             entity.setSource(song.getSource());
         }
     }

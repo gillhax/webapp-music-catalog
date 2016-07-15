@@ -163,14 +163,18 @@ public class AppController {
     @RequestMapping(value = { "/song-new" }, method = RequestMethod.GET)
     public String newSong(ModelMap model) {
         model.addAttribute(new HandleSongForm());
+        model.addAttribute("artists", artistService.findAllArtist());
+        model.addAttribute("albums", albumService.findAllAlbum());
         model.addAttribute("edit", false);
-        return "songchanger";
+        return "song-changer";
     }
 
     @RequestMapping(value = { "/song-new" }, method = RequestMethod.POST)
-    public String saveSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result) {
+    public String saveSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            return "songchanger";
+            model.addAttribute("artists", artistService.findAllArtist());
+            model.addAttribute("albums", albumService.findAllAlbum());
+            return "song-changer";
         }
         songService.saveSong(handleSongForm.prepareSongToSave());
 
@@ -181,18 +185,21 @@ public class AppController {
     public String editSong(@PathVariable int id, ModelMap model) {
         HandleSongForm handleSongForm = new HandleSongForm();
         handleSongForm.setSong(songService.findById(id));
+        model.addAttribute("artists", artistService.findAllArtist());
+        model.addAttribute("albums", albumService.findAllAlbum());
         model.addAttribute("handleSongForm", handleSongForm);
         model.addAttribute("edit", true);
-        return "songchanger";
+        return "song-changer";
     }
 
     @RequestMapping(value = { "/edit-{id}-song" }, method = RequestMethod.POST)
     public String editSong(@Valid@ModelAttribute(value = "handleSongForm") HandleSongForm handleSongForm, BindingResult result,
                                  ModelMap model, @PathVariable int id) {
-
         if (result.hasErrors()) {
+            model.addAttribute("artists", artistService.findAllArtist());
+            model.addAttribute("albums", albumService.findAllAlbum());
             model.addAttribute("edit",true);
-            return "songchanger";
+            return "song-changer";
         }
 
         Song oldSong = songService.findById(id);

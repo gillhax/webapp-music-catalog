@@ -9,10 +9,10 @@
 <br>
 
 <table cellspacing="0">
+    <tr>
+        <th>Id</th><th>Название</th><th>Группа</th><th>Альбом</th><th>Воспроизвести</th>
+    </tr>
     <c:forEach items="${songs}" var="song">
-        <tr>
-            <th>Id</th><th>Название</th><th>Группа</th><th>Альбом</th><th>Воспроизвести</th>
-        </tr>
         <tr>
             <td>${song.id}.</td>
             <td>${song.name}</td>

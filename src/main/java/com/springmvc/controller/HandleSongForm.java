@@ -23,7 +23,6 @@ public class HandleSongForm extends Song {
         this.setName(song.getName());
         this.setArtistId(song.getArtistId());
         this.setAlbumId(song.getAlbumId());
-        this.setUserId(song.getId());
         this.setSource(song.getSource());
     }
 
@@ -33,7 +32,6 @@ public class HandleSongForm extends Song {
         song.setName(this.getName());
         song.setAlbumId(this.getAlbumId());
         song.setArtistId(this.getArtistId());
-        song.setUserId(this.getUserId());
         song.setSource(this.getSource());
         return song;
     }

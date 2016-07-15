@@ -42,21 +42,23 @@
         </tr>
 
         <tr>
-            <td><label for="albumId">Номер альбома: </label> </td>
-            <td><form:input path="albumId" id="albumId"/></td>
+            <td><label for="albumId">Альбом: </label> </td>
+            <td><form:select path="albumId" id="albumId">
+                <c:forEach items="${albums}" var="album">
+                    <form:option value="${album.id}">${album.name}</form:option>
+                </c:forEach>
+            </form:select></td>
             <td><form:errors path="albumId" cssClass="error"/></td>
         </tr>
 
         <tr>
-            <td><label for="artistId">Номер артиста: </label> </td>
-            <td><form:input path="artistId" id="artistId"/></td>
+            <td><label for="artistId">Группа: </label> </td>
+            <td><form:select path="artistId" id="artistId">
+                <c:forEach items="${artists}" var="artist">
+                    <form:option value="${artist.id}">${artist.name}</form:option>
+                </c:forEach>
+            </form:select></td>
             <td><form:errors path="artistId" cssClass="error"/></td>
-        </tr>
-
-        <tr>
-            <td><label for="userId">Номер пользователя: </label> </td>
-            <td><form:input path="userId" id="userId"/></td>
-            <td><form:errors path="userId" cssClass="error"/></td>
         </tr>
 
         <tr>
@@ -81,6 +83,6 @@
 </form:form>
 <br/>
 <br/>
-Вернуться к <a href="<c:url value='/list' />">списку всех песен</a>
+Вернуться к <a href="<c:url value='/song-list' />">списку всех песен</a>
 </body>
 </html>

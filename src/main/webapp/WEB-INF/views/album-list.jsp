@@ -15,7 +15,7 @@
         <tr>
             <td>
                 <img src="${album.coverSource}" width="200" height="200" alt="${album.name}"/>
-                <br><p style="text-align: right">${album.year}></p>
+                <br><p style="text-align: right">${album.year}</p>
             </td>
             <td>
                 <%--<audio preload="auto">--%>

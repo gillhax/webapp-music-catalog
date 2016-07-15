@@ -10,10 +10,10 @@ package com.springmvc.model;
     import javax.validation.constraints.Size;
 
     @Entity
-    @Table(name="Songs")
+    @Table(name="SONGS")
     public class Song {
         @Id
-        @Column(name ="ID")
+        @Column(name ="SONG_ID")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
@@ -28,10 +28,6 @@ package com.springmvc.model;
         @NotNull
         @Column(name = "ARTISTID", nullable = false)
         private int artistId;
-
-        @NotNull
-        @Column(name = "USERID", nullable = false)
-        private int userId;
 
         @NotNull
         @Column(name = "SOURCE", nullable = false)
@@ -69,14 +65,6 @@ package com.springmvc.model;
             this.artistId = artistId;
         }
 
-        public int getUserId() {
-            return userId;
-        }
-
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-
         public String getSource() {
             return source;
         }
@@ -102,8 +90,7 @@ package com.springmvc.model;
                 return false;
             if (artistId != other.artistId)
                 return false;
-            if (userId != other.userId)
-                return false;
+
             if (source.equals(other.source))
                 return false;
             return true;
@@ -112,7 +99,7 @@ package com.springmvc.model;
         @Override
         public String toString() {
             return "Song [id=" + id + ", name=" + name + ", albumId="
-                    + albumId + ", artistId=" + artistId + ", userId=" + userId + ", source=" + source + "]";
+                    + albumId + ", artistId=" + artistId + ", source=" + source + "]";
         }
 
     }
