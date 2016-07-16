@@ -6,13 +6,17 @@
 <jsp:include page="/WEB-INF/views/js-playlist-play-settings.jsp" />
 
 
-<h4> > Все альбомы</h4>
+<h4> >  <c:choose> <c:when test="${byArtist}">  Группа ${artistName}  >  Альбомы </c:when>
+    <c:otherwise>Все альбомы</c:otherwise> </c:choose></h4>
 <br>
     <c:forEach items="${albums}" var="album">
 
         <table id="album" cellspacing="0" style="border:none; width:600px;margin: 0 auto;">
         <tr>
-            <th colspan="2">${album.name}</th>
+            <th>${album.name}</th>
+            <th><a style="margin-left:397px;  font-weight:100" href="<c:url value='/edit-${album.id}-album' />">[ред.]</a>
+            <a style=" font-weight:100" href="<c:url value='/delete-${album.id}-album' />">[удал.]</a>
+            </th>
         </tr>
         <tr >
             <td style="display: list-item">
@@ -36,4 +40,6 @@
     </c:forEach>
 <table>
 
+    <br>
+    <a href="<c:url value='/album-new' />">Добавить новый альбом</a>
 <jsp:include page="/WEB-INF/views/template-bottom.jsp" />

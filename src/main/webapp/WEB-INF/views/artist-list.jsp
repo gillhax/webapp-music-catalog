@@ -12,11 +12,15 @@
                 <tr>
                     <td>${artist.id}.</td>
                     <td>${artist.name}</td>
-                    <td><a href="<c:url value='/artist-${artist.id}/album-list' />">[Альбомы]</a></td>
-                    <td><a href="<c:url value='/artist-${artist.id}/song-list' />">[Песни]</a></td>
+                    <td><a href="<c:url value='/album-list/artist-${artist.id}/' />">[Альбомы]</a></td>
+                    <td><a href="<c:url value='/song-list/artist-${artist.id}/' />">[Песни]</a></td>
+                    <td> -|||- </td>
+                    <td><a style=" font-weight:100" href="<c:url value='/edit-${artist.id}-artist' />">[ред.]</a></td>
+                    <td><a style=" font-weight:100" href="<c:url value='/delete-${artist.id}-artist' />">[удал.]</a></td>
                 </tr>
             </c:forEach>
         </table>
 
-
+<br>
+<a href="<c:url value='/artist-new' />">Добавить новую группу</a>
  <jsp:include page="/WEB-INF/views/template-bottom.jsp" />

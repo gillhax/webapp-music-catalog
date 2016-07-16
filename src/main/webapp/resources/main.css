@@ -31,6 +31,25 @@ a:active {
     text-decoration: none;
 }
 
+
+
+
+th  a:link {
+    text-decoration: none; !important;
+}
+
+th a:visited {
+    text-decoration: none; !important;
+}
+
+th a:hover {
+    text-decoration: underline; !important;
+}
+
+th a:active {
+    text-decoration: underline; !important;
+}
+
 .container {
     display: flex;
     align-items: center;

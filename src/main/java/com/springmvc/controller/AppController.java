@@ -100,6 +100,16 @@ public class AppController {
         return "album-list";
     }
 
+    @RequestMapping(value = { "/album-list/artist-{id}/" }, method = RequestMethod.GET)
+    public String listAlbumsByArtist(@PathVariable int id, ModelMap model) {
+        String artistName = artistService.findById(id).getName();
+        model.addAttribute("artistName", artistName);
+        model.addAttribute("byArtist", true);
+        model.addAttribute("albums", albumService.findAlbumsByArtist(id));
+        model.addAttribute("songService", songService);
+        return "album-list";
+    }
+
     @RequestMapping(value = { "/album-new" }, method = RequestMethod.GET)
     public String newAlbum(ModelMap model) {
         model.addAttribute(new HandleAlbumForm());
@@ -157,6 +167,21 @@ public class AppController {
         model.addAttribute("songs", songService.findAllSong());
         model.addAttribute("artistService", artistService);
         model.addAttribute("albumService", albumService);
+        return "song-list";
+    }
+
+    @RequestMapping(value = { "/song-list/artist-{id}/" }, method = RequestMethod.GET)
+    public String listSongsByArtist(@PathVariable int id, ModelMap model) {
+        String artistName = artistService.findById(id).getName();
+        model.addAttribute("artistName", artistName);
+        model.addAttribute("byArtist", true);
+        model.addAttribute("albums", albumService.findAlbumsByArtist(id));
+        model.addAttribute("songService", songService);
+
+        model.addAttribute("songs", songService.findSongsByArtist(id));
+        model.addAttribute("artistService", artistService);
+        model.addAttribute("albumService", albumService);
+
         return "song-list";
     }
 
